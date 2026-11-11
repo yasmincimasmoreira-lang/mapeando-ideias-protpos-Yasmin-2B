@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Rotina de Estudo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Fundo de Estrelas e Objetos 3D Tridimensionais -->
+    <div class="stars-container">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="container">
+        <header class="header">
+            <h1 class="title">Minha Rotina de Estudo</h1>
+            <p class="subtitle">Organização diária, tarefas, lazer e saúde</p>
+        </header>
+
+        <!-- Grade de Cards de Rotina -->
+        <section class="cards-grid">
+            
+            <!-- Card Estudo -->
+            <div class="card" onclick="openModal('Estudo', 'Manhã (07:00 - 12:00)', 'Escola & Aprendizado', 'Vou de manhã para a escola. Foco em prestar atenção nas aulas, tomar notas e manter os cadernos organizados.')">
+                <div class="card-tag">Estudo</div>
+                <h2>Escola</h2>
+                <p><strong>Horário:</strong> Período da Manhã</p>
+                <p><strong>Ação:</strong> Vou de manhã para a escola</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <!-- Card Trabalho -->
+            <div class="card" onclick="openModal('Trabalho', 'Tarde (13:30 - 15:30)', 'Organização Doméstica', 'Ajudo nas tarefas diárias em casa, mantendo os ambientes limpos e auxiliando a família.')">
+                <div class="card-tag">Trabalho</div>
+                <h2>Ajudo em Casa</h2>
+                <p><strong>Horário:</strong> Período da Tarde</p>
+                <p><strong>Ação:</strong> Auxílio nas tarefas de casa</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <!-- Card Lazer -->
+            <div class="card" onclick="openModal('Lazer', 'Fim de Tarde / Fim de Semana', 'Social & Amigos', 'Eu saio com meus amigos para conversar, descontrair e aproveitar momentos de descanso juntos.')">
+                <div class="card-tag">Lazer</div>
+                <h2>Saída com Amigos</h2>
+                <p><strong>Horário:</strong> Flexível / Finais de semana</p>
+                <p><strong>Ação:</strong> Eu saio com meus amigos</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <!-- Card Hobby -->
+            <div class="card" onclick="openModal('Hobby', 'Livre / Pausas', 'Música & Relaxamento', 'Escutar música para relaxar, inspirar e acompanhar os momentos de foco ou lazer ao longo do dia.')">
+                <div class="card-tag">Hobby</div>
+                <h2>Escutar Música</h2>
+                <p><strong>Horário:</strong> Momentos de pausa</p>
+                <p><strong>Ação:</strong> Escutar minhas músicas favoritas</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <!-- Card Esportes -->
+            <div class="card" onclick="openModal('Esportes', 'Tarde / Noite (17:00 - 18:30)', 'Treino & Condicionamento', 'Faço academia regularmente para manter a força, resistência física e disposição diária.')">
+                <div class="card-tag">Esportes</div>
+                <h2>Academia</h2>
+                <p><strong>Horário:</strong> Período da Tarde/Noite</p>
+                <p><strong>Ação:</strong> Faço academia</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <!-- Card Saúde -->
+            <div class="card" onclick="openModal('Saúde', 'Ao longo do dia', 'Nutrição & Bem-estar', 'Alimentação saudável com refeições balanceadas, hidratação adequada e bons hábitos diários.')">
+                <div class="card-tag">Saúde</div>
+                <h2>Alimentação Saudável</h2>
+                <p><strong>Horário:</strong> Durante todo o dia</p>
+                <p><strong>Ação:</strong> Manter dieta equilibrada</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Modal de Informações -->
+    <div id="routineModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalForce()">&times;</span>
+            <h2 id="modalTitle">Título da Rotina</h2>
+            <div class="modal-body">
+                <p><strong> Horário:</strong> <span id="modalTime"></span></p>
+                <p><strong> Categoria:</strong> <span id="modalTopic"></span></p>
+                <hr class="modal-divider">
+                <p><strong> Descrição & Objetivos:</strong></p>
+                <p id="modalDescription"></p>
+            </div>
+            <button class="btn-close-modal" onclick="closeModalForce()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Integrado -->
+    <script>
+        function openModal(title, time, topic, description) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalTime').innerText = time;
+            document.getElementById('modalTopic').innerText = topic;
+            document.getElementById('modalDescription').innerText = description;
+            
+            const modal = document.getElementById('routineModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeModalForce() {
+            const modal = document.getElementById('routineModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function closeModal(event) {
+            if (event.target.id === 'routineModal') {
+                closeModalForce();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModalForce();
+            }
+        });
+    </script>
+</body>
+</html>
